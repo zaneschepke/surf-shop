@@ -1,6 +1,6 @@
 // User Model
 //passport local mongoose auto adds username and password
-const mongoose = require('mongooose'), 
+const mongoose = require('mongoose'), 
     passportLocalMongoose = require('passport-local-mongoose');
     Schema = mongoose.Schema;
 

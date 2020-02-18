@@ -14,4 +14,3 @@ const ReviewSchema = new Schema({
 ReviewSchema.plugin(passportLocalMongoose);
 
 module.exports = mongoose.model('Review', ReviewSchema);
-
