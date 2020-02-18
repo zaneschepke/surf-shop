@@ -1,5 +1,7 @@
 const express = require('express');
 const router = express.Router();
+//destructure object ot pull necessary methods
+const { postRegister } = require('../controllers/index');
 
 /* GET home page. */
 router.get('/', (req, res, next) => {
@@ -12,9 +14,7 @@ router.get('/register', (req, res, next) => {
 });
 
 /* POST /register  */
-router.post('/register', (req, res, next) => {
-  res.send('POST /register');
-});
+router.post('/register', postRegister);
 
 /* GET login page. */
 router.get('/login', (req, res, next) => {
@@ -36,24 +36,24 @@ router.put('/profile/:user_id', (req, res, next) => {
   res.send('PUT /profile');
 });
 
-/* GET /forgot-password  */
-router.get('/forgot-pw', (req, res, next) => {
-  res.send('GET /forgot-pw');
+/* GET /forgot */
+router.get('/forgot', (req, res, next) => {
+  res.send('GET /forgot');
 });
 
-/* PUT /forgot-password  */
-router.put('/forgot-pw', (req, res, next) => {
-  res.send('PUT /forgot-pw');
+/* PUT /forgot */
+router.put('/forgot', (req, res, next) => {
+  res.send('PUT /forgot');
 });
 
-/* GET /reset-password  */
-router.get('/reset-pw/:token', (req, res, next) => {
-  res.send('GET /reset-pw');
+/* GET /reset/:token */
+router.get('/reset/:token', (req, res, next) => {
+  res.send('GET /reset/:token');
 });
 
-/* PUT /reset-password  */
-router.put('/reset-pw/:token', (req, res, next) => {
-  res.send('PUT /reset-pw');
+/* PUT /reset/:token  */
+router.put('/reset/:token', (req, res, next) => {
+  res.send('PUT /reset/:token');
 });
 
 
