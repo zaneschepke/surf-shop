@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 //destructure object ot pull necessary methods
 const {
-  postRegister
+  postRegister, postLogin, getLogout
 } = require('../controllers/index');
 const {
   errorHandler
@@ -30,16 +30,10 @@ router.get('/login', (req, res, next) => {
 });
 
 /* POST /login  */
-router.post('/login', passport.authenticate('local', {
-  successRedirect: '/',
-  failureRedirect: '/login'
-}));
+router.post('/login', postLogin);
 
 /*  GET /logout */ 
-router.get('/logout', (req, res, next) => {
-  req.logout();
-  res.redirect('/');
-});
+router.get('/logout', getLogout);
 
 /* GET /profile  */
 router.get('/profile', (req, res, next) => {

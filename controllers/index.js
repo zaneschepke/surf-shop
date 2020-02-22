@@ -1,4 +1,5 @@
 const User = require('../models/user');
+const passport = require('passport');
 
 module.exports = {
     async postRegister(req, res, next) {
@@ -11,6 +12,19 @@ module.exports = {
         //try catch alternative to error callback
         //wait until this is completed, must use aync function
         await User.register(newUser, req.body.password)
+        res.redirect('/');
+    },
+
+    postLogin(req, res, next) {
+        //higher order function
+        passport.authenticate('local', {
+            successRedirect: '/',
+            failureRedirect: '/login'
+          })(req, res, next);
+    }, 
+
+    getLogout(req, res, next) {
+        req.logout();
         res.redirect('/');
     }
 }
