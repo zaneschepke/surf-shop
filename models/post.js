@@ -1,5 +1,5 @@
 // Post Model
-const mongoose = require('mongooose'), 
+const mongoose = require('mongoose'), 
     passportLocalMongoose = require('passport-local-mongoose');
     Schema = mongoose.Schema;
 
