@@ -6,7 +6,8 @@ const {
 const {
     getPosts,
     newPost,
-    createPost
+    createPost,
+    showPost
 } = require('../controllers/posts')
 /* GET home posts index /posts */
 router.get('/', errorHandler(getPosts));
@@ -19,9 +20,7 @@ router.get('/new', newPost);
 router.post('/', errorHandler(createPost));
 
 /* GET posts show /posts/:id */
-router.get('/:id', (req, res, next) => {
-    res.send(' show /posts/new');
-});
+router.get('/:id', errorHandler(showPost));
 
 /* GET posts edit for new post /posts/:id/edit */
 router.get('/:id/edit', (req, res, next) => {

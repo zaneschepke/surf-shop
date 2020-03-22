@@ -1,4 +1,5 @@
 //changed to const
+require('dotenv').config();
 const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
@@ -18,8 +19,11 @@ const reviewsRouter = require('./routes/reviews');
 const app = express();
 
 //establish db connection
-mongoose.connect('mongodb://localhost:27017/surf-shop', { 
-  useNewUrlParser: true, 
+mongoose.connect(`mongodb://${process.env.DB_HOST}:27017/surf-shop`, {
+  user: process.env.DB_USER,
+  pass: process.env.DB_PASS,
+  authSource: process.env.DB_AUTHDB,
+  useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
 });
@@ -36,7 +40,9 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({
+  extended: false
+}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -63,12 +69,12 @@ app.use('/posts', postsRouter);
 app.use('/posts/:id/reviews', reviewsRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
