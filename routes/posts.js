@@ -7,7 +7,8 @@ const {
     getPosts,
     newPost,
     createPost,
-    showPost
+    showPost,
+    editPost
 } = require('../controllers/posts')
 /* GET home posts index /posts */
 router.get('/', errorHandler(getPosts));
@@ -23,9 +24,7 @@ router.post('/', errorHandler(createPost));
 router.get('/:id', errorHandler(showPost));
 
 /* GET posts edit for new post /posts/:id/edit */
-router.get('/:id/edit', (req, res, next) => {
-    res.send('EDIT /posts/:id/edit');
-});
+router.get('/:id/edit', errorHandler(editPost));
 
 /* PUT posts update /posts/:id*/
 router.put('/:id', (req, res, next) => {
