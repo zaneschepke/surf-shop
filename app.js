@@ -40,8 +40,9 @@ app.set('view engine', 'ejs');
 
 app.use(logger('dev'));
 app.use(express.json());
+//needs to be true for our forms object creation
 app.use(express.urlencoded({
-  extended: false
+  extended: true
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
