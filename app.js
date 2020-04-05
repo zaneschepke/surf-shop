@@ -25,7 +25,8 @@ mongoose.connect(`mongodb://${process.env.DB_HOST}:27017/surf-shop`, {
   authSource: process.env.DB_AUTHDB,
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true
+  useCreateIndex: true,
+  useFindAndModify: false
 });
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
