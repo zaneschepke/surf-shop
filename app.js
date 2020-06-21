@@ -19,10 +19,10 @@ const reviewsRouter = require('./routes/reviews');
 const app = express();
 
 //establish db connection
-mongoose.connect(`mongodb://${process.env.DB_HOST}:27017/surf-shop`, {
-  user: process.env.DB_USER,
-  pass: process.env.DB_PASS,
-  authSource: process.env.DB_AUTHDB,
+mongoose.connect(`mongodb://${process.env.DB_LOCAL}:27017/surf-shop`, {
+  // user: process.env.DB_USER,
+  // pass: process.env.DB_PASS,
+  // authSource: process.env.DB_AUTHDB,
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,

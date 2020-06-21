@@ -47,6 +47,7 @@ module.exports = {
             for(public_id of deleteImages) {
                 await cloudinary.v2.uploader.destroy(public_id);
                 for(image of post.images) {
+                    //delete images from local db
                     if(image.public_id === public_id) {
                         let index = post.images.indexOf(image);
                         post.images.splice(index,1);
@@ -72,7 +73,11 @@ module.exports = {
         res.redirect(`/posts/${post.id}`);
     },
     async postDestroy(req, res, next) {
-        await Post.findByIdAndDelete(req.params.id);
+        let post = await Post.findByIdAndDelete(req.params.id);
+        for(const image of post.images) {
+            await cloudinary.v2.uploader.destroy(image.public_id);
+        }
+        await post.remove();
         res.redirect('/posts');
     }
 }
